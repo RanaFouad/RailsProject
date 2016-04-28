@@ -1,0 +1,12 @@
+1- sudo apt-get install imagemagick
+
+2- bundle install
+
+3- rake db:create
+
+4- rake db:migrate
+
+username of mysql : x
+
+password :iti
+ 
