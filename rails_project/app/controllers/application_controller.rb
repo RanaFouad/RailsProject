@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
             devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :current_password, :gender, :picture) }
         end
 
+        def after_sign_out_path_for(resource_or_scope)
+    		new_user_session_path
+  		end
+
 end
