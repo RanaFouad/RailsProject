@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   has_many :invitations, :dependent => :delete_all
   has_many :groups, :dependent => :delete_all
   has_many :group_members, :dependent => :delete_all
-  has_many :friends, :dependent => :delete_all
+  has_many :friendships, :dependent => :delete_all
+  has_many :friends, :through => :friendships
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
