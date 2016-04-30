@@ -28,6 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem "paperclip"
 gem 'bootstrap-sass'
+gem 'rails3-jquery-autocomplete'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

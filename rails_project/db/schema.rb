@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429110343) do
+ActiveRecord::Schema.define(version: 20160429183415) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160429110343) do
     t.string   "menuimage_content_type", limit: 255
     t.integer  "menuimage_file_size",    limit: 4
     t.datetime "menuimage_updated_at"
+    t.string   "friends",                limit: 255
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
