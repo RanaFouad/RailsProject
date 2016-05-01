@@ -45,16 +45,7 @@
 							<% if user_signed_in? %>
 							<li class="ts" ><a  href="#"> <span class="glyphicon glyphicon-home"></span>Home</a></li>
 
-<!-- 
 
-							<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span>Settings <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Change Password</a></li>
-            <li><a href="#">Edit Profile</a></li>
-          </ul>
-        </li> -->
-							<!-- <li class="ts active" ><a  href="#"> <span class="glyphicon glyphicon-home"></span>Home</a></li> -->
 
 							<li class="ts" ><a  href="#"><span class="glyphicon glyphicon-user"></span>Friends</a></li>
 			
@@ -67,7 +58,7 @@
 						
 							<li class="ts" > 
 						<%= image_tag(current_user.picture.url(:thumb)) %>
- </li>
+ 							</li>
 
 							
  							<li class="ts" > 
