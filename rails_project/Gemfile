@@ -38,7 +38,6 @@ gem 'puma', '~> 3.4'
 gem 'entangled'
 gem "acts_as_follower"
 
-gem 'puma', '~> 3.4'
 
 gem 'will_paginate', '~> 3.1'
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
