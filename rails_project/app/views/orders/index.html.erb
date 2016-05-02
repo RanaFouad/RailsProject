@@ -23,8 +23,8 @@
 				<td>
 					<%= link_to 'view' , order %> |
 					<% if ( order.status == 'waiting' ) %>
-						<a href='/orders/updateStatus?id=<%= order.id %>&s="f"' >Finish</a> |
-						<a href='/orders/updateStatus?id=<%= order.id %>&s="c"' >Cancle</a>
+						<a href='/orders/updateStatus?id=<%= order.id %>&status=Finished ' >Finish</a> |
+						<a href='/orders/updateStatus?id=<%= order.id %>&status=Cancled ' >Cancle</a>
 					<% end %>
 				<td>
 			</tr>

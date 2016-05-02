@@ -2,13 +2,13 @@ class OrdersController < ApplicationController
 before_action :authenticate_user!
 def index
 
-	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 1)
+	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 3)
  
 	@page=params[:page].to_i
-	if current_user.orders.size%1 ==0
-		@count=(current_user.orders.size/1).to_i
+	if current_user.orders.size%3 ==0
+		@count=(current_user.orders.size/3).to_i
 	else
-		@count=(current_user.orders.size/1).to_i+1
+		@count=(current_user.orders.size/3).to_i+1
 	end
 	@inv=[]
     @jo=[]
@@ -30,12 +30,9 @@ def index
 	end
 end
 def updateStatus
-	@order=Order.find(params[:id])
-	if params[:s]=="f"
-		@order.update(status: "Finished")
-	else
-		@order.update(status: "Canceled")
-	end
+	Order.find(params[:id]).update(status: params[:status])
+	@x=params[:status]
+
 	#render index
 end
 
