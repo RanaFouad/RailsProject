@@ -1,1 +1,21 @@
+<div class="row">
+	<div class="col-sm-12">
+			<div class="panel panel-info">
+				<div class="panel-heading"> <%= @order.order_title %></div>
+			  	<div class="panel-body">
+			  		<% @order.order_details.each do |detail| %>
+			  			Item : <%= detail.item %></br>
+			  			Amount : <%= detail.amount %></br>
+			  			Price : <%= detail.price %> LE</br>
+			  			Comment : <%= detail.comment %></br>
+			  			</br>
+			  		<% end %>
+			  	</div>
+			  	<div class="panel-footer">
+			  		From : <%= @order.from %></br>
+		  			status : <%= @order.status %></br>
+			  	</div>
+			</div>
+	</div>
+</div>
 
