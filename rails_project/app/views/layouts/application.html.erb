@@ -61,6 +61,13 @@
 
 							<li class="ts" ><a  href="#"><span class="glyphicon glyphicon-list-alt"></span>Groups</a></li>
 							<li class="ts" ><a  href="#"><span class="glyphicon glyphicon-list-alt"></span>Order</a></li>
+							<li class="ts  ">
+							<%= link_to new_order_path, :method => :get  do %>
+							<span class="glyphicon glyphicon-plus"></span> Add Order
+						<% end %>
+
+							</li>
+
 
 						</ul>
 						<ul class="nav navbar-nav navbar-right">

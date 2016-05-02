@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
-
+  resources :order_details
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -16,8 +16,13 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
     post '/orders/batota/' => 'orders#batota'
+    get '/orders/details/:id' => 'orders#details'
+    get '/orders/join_details/:id' => 'orders#join_details'
+    delete '/orders/delete_invitation/:id' => 'orders#delete_invitation'
     # get '/orders/batota/' => 'orders#batota'
-    resources :orders
+    resources :orders do
+    resources :order_details
+    end  
 
 
 

@@ -37,8 +37,16 @@ def batota
 	render json: @suggestions.to_json
 end
 
+
+
+
+
+
+
 def create
 	@order = Order.new(order_params)
+	@order['user_id'] = current_user.id
+	@order['status'] = "waiting"
     respond_to do |format|
 	  	if @order.save
          	params[:friends].each  do |friend|
@@ -66,11 +74,66 @@ def update
 end
 
 def show
-	@order = Order.find params[:id]
-	@users = User.all	
+	# @order_id=params[:id]
+	@order = Order.find(params[:id])
+	@curentuser_invites=current_user.invitations.find_by(order_id: params[:id])
+	if (@curentuser_invites != nil)
+		@curentuser_join=@curentuser_invites.join
+		
+	end	
+	@order_detail = OrderDetail.new
+	@all_orders_details = @order.order_details.select(:id, :item, :amount, :price, :comment, :user_id)
+
 end
 
+
+def details
+	
+	@order = Order.find(params[:id])
+	@invited_friends = {invites: [],creator: 0, invitations_id: []}
+	@order.invitations.each do |order|
+		if(order.join == 0)
+			@user = User.find(order.user_id)
+			@invited_friends [:invites].push(@user)
+			@invited_friends[:invitations_id].push(order.id)
+		end
+	end	
+	if(@order.user_id == current_user.id)
+		@invited_friends[:creator] =1
+	end		
+	render json: @invited_friends
+	
+end
+
+
+def join_details
+	@order = Order.find(params[:id])
+	@joined_friends = {join: [],creator: 0, invitations_id: []}
+	@order.invitations.each do |order|
+	if(order.join == 1)	
+		@user = User.find(order.user_id)
+		@joined_friends [:join].push(@user)
+		@joined_friends[:invitations_id].push(order.id)
+		end
+	end	
+	if(@order.user_id == current_user.id)
+		@joined_friends[:creator] =1
+	end
+	render json: @joined_friends
+end
+
+
+
 def destroy
+end
+
+def delete_invitation
+	
+	@invitation = Invitation.find params[:id]
+	@invitation.destroy
+	render json: @invitation
+
+
 end
 
 private
