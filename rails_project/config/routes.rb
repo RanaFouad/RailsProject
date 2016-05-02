@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get '/orders/details/:id' => 'orders#details'
     get '/orders/join_details/:id' => 'orders#join_details'
     delete '/orders/delete_invitation/:id' => 'orders#delete_invitation'
+    get '/orders/updateStatus/' => 'orders#updateStatus'
     # get '/orders/batota/' => 'orders#batota'
     resources :orders do
     resources :order_details
