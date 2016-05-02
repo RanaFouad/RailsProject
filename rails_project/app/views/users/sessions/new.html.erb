@@ -1,12 +1,12 @@
 
 <div class"row">
-  <div class="col-sm-3"></div>
+  <br>
+  <br>
+  <div class="col-sm-7">
+  <%= image_tag("pasta1.jpeg", :alt => "BackGround" ,  width: "490px" , height: "350px") %>
+  </div>
 
-  <div class="col-sm-6">
-
-
-
-<h2 align="center">Log in</h2>
+  <div class="col-sm-4">
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field ">
@@ -18,7 +18,7 @@
     <%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off" , class: "form-control" %>
   </div>
-  <br>
+
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>

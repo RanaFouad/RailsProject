@@ -1,21 +1,147 @@
-<div class="row">
-	<div class="col-sm-12">
-			<div class="panel panel-info">
-				<div class="panel-heading"> <%= @order.order_title %></div>
-			  	<div class="panel-body">
-			  		<% @order.order_details.each do |detail| %>
-			  			Item : <%= detail.item %></br>
-			  			Amount : <%= detail.amount %></br>
-			  			Price : <%= detail.price %> LE</br>
-			  			Comment : <%= detail.comment %></br>
-			  			</br>
-			  		<% end %>
-			  	</div>
-			  	<div class="panel-footer">
-			  		From : <%= @order.from %></br>
-		  			status : <%= @order.status %></br>
-			  	</div>
-			</div>
+<h1>Order Details</h1>
+<br/>
+<% if( @order.user_id == current_user.id || @curentuser_join==1)%>
+<div class="row" style="padding:5;margin:5;">
+	<div class="col-md-6" style="  padding:5;margin:5;">
+		<table class="table table-striped table-bordered table-condensed">
+			<tr>
+				<td>Person</td>
+				<td>Item</td>
+				<td>amount</td>
+				<td>Price</td>
+				<td>Comment</td>
+				<td>Remove</td>
+			</tr>
+		<% @all_orders_details.each do |detail| %>	
+
+			<tr id="row_<%= detail.id %>">
+				
+				<td><%= User.find(detail.user_id).username %></td>
+				<td><%= detail.item %></td>
+				<td><%= detail.amount %></td>
+				<td><%= detail.price %></td>
+				<td><%= detail.comment %></td>
+				<% if ( detail.user_id == current_user.id ) %>
+					<td><button id="<%= detail.id %>" class="remove" >Remove</button></td>
+				<% end %>	
+
+			</tr>
+
+
+		<% end %>
+
+
+		</table>
+
+		<button type="button" class="btn btn-info btn-lg  invited_friends " data-toggle="modal" data-target="#myModal" id="<%= @order.id %>"   >Invited Friends</button>
+		
+		<button type="button" class="btn btn-info btn-lg  joined_friends " data-toggle="modal" data-target="#my_Modal" id="<%= @order.id %>" >Joined Friends</button>
+
 	</div>
+
+	<div class="col-md-6" style="border: 2px solid; padding:5;margin:5;">
+	<h1>Add your Order Details</h1>	
+	<%= render partial: 'order_details/form', locals: {order_id: @order.id, user_id: current_user.id } %>
+
+
+	</div>	
 </div>
 
+<div class="row" style="padding:5;margin:5;">
+	<div class="col-md-12" style="padding:5;margin:5;"  id="modal_invited">
+
+		
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" class="modal" data-keyboard = "true" data-backdrop="false">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="modal_header"></h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-striped table-bordered table-condensed" >
+          		<tr>
+          			<td>Invited friend name</td>
+          			<td>Remove invitation</td>
+          		</tr>
+          		<tbody id="invitation_table">
+          			
+          		</tbody>
+
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+<!-- Modal -->
+  <div class="modal fade" id="my_Modal" role="dialog" class="modal" data-keyboard = "true" data-backdrop="false">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="modal_header_join"></h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-striped table-bordered table-condensed" >
+          		<tr>
+          			<td>Joined friend name</td>
+       
+          		</tr>
+          		<tbody id="join_table">
+          			
+          		</tbody>
+
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+
+</div>
+
+<% else %>
+<div class="row" style="padding:5;margin:5;">
+	<div class="col-md-12" style="padding:5;margin:5;">
+		<h1>You can't access this page </h1>
+	</div>	
+
+</div>
+
+
+<% end %>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "/orders/delete_order_details.js" %>
+<% end %>
