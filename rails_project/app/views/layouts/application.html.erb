@@ -60,10 +60,12 @@
  							</li>
 
 							
- 							<li class="ts" > 
- 							<a  href="#">
-						<p  style="color:white;" ><%= current_user.username %></p></a>
- </li>
+ 							<li class="ts" >
+
+ 							<%= link_to edit_user_registration_path, :method => :get  do %>
+						<p  style="color:white;" ><%= current_user.username %></p>
+							<% end %>
+ 								</li>
 
 
 							<li class="ts" > <%= link_to destroy_user_session_path, :method => :delete  do %>
