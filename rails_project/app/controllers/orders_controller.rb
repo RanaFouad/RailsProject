@@ -1,7 +1,38 @@
 class OrdersController < ApplicationController
 skip_before_action :verify_authenticity_token
 def index
-	# @x=params[:value]
+	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 1)
+ 
+	@page=params[:page].to_i
+	if current_user.orders.size%1 ==0
+		@count=(current_user.orders.size/1).to_i
+	else
+		@count=(current_user.orders.size/1).to_i+1
+	end
+	@inv=[]
+    @jo=[]
+    #@i=Invitation.where(:order_id => 1,:user_id => current_user.id)
+	@all_orders.each do |order| 
+		curentuser_invites=current_user.invitations.where(order_id: order.id)
+		if (curentuser_invites != nil)
+			curentuser_joins=current_user.invitations.where(order_id: order.id,join: 1)
+			if (curentuser_joins != nil)
+				@jo[order.id]=curentuser_joins		
+			else 
+				@jo[order.id]=0
+			end
+			@inv[order.id]=curentuser_invites
+		else 
+			@inv[order.id]=0
+			@jo[order.id]=0
+		end
+	end
+end
+def updateStatus
+	Order.find(params[:id]).update(status: params[:status])
+	@x=params[:status]
+
+	redirect_to orders_path
 end
 
 def batota
@@ -69,7 +100,7 @@ def new
 end
 
 def edit
-	
+
 end
 
 def update
@@ -82,8 +113,7 @@ def show
 	@order = Order.find(params[:id])
 	@curentuser_invites=current_user.invitations.find_by(order_id: params[:id])
 	if (@curentuser_invites != nil)
-		@curentuser_join=@curentuser_invites.join
-		
+		@curentuser_join=@curentuser_invites.join	
 	end	
 	@order_detail = OrderDetail.new
 	@all_orders_details = @order.order_details.select(:id, :item, :amount, :price, :comment, :user_id)
