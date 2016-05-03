@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+	 before_action :authenticate_user!
 skip_before_action :verify_authenticity_token
 def index
 	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 1)
