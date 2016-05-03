@@ -28,6 +28,21 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem "paperclip"
 gem 'bootstrap-sass'
+gem 'rails3-jquery-autocomplete'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2" 
+gem 'omniauth-oauth2'
+gem 'puma', '~> 3.4'
+gem 'entangled'
+gem "acts_as_follower"
+
+
+gem 'will_paginate', '~> 3.1'
+gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

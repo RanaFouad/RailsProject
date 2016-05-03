@@ -5,9 +5,10 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  
 </head>
 <body>
-
 
 <div class="container">
 		<div class="row">
@@ -41,37 +42,37 @@
 						
 						<% end %>	
 							<% if user_signed_in? %>
-							<li class="ts" ><a  href="#"> <span class="glyphicon glyphicon-home"></span>Home</a></li>
+							<li class="ts" ><a  href="/"> <span class="glyphicon glyphicon-home"></span>Home</a></li>
 
-<!-- 
 
-							<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span>Settings <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Change Password</a></li>
-            <li><a href="#">Edit Profile</a></li>
-          </ul>
-        </li> -->
-							<!-- <li class="ts active" ><a  href="#"> <span class="glyphicon glyphicon-home"></span>Home</a></li> -->
 
 							<li class="ts" ><a  href="/friendships"><span class="glyphicon glyphicon-user"></span>Friends</a></li>
 			
 
 							<li class="ts" ><a  href="#"><span class="glyphicon glyphicon-list-alt"></span>Groups</a></li>
-							<li class="ts" ><a  href="#"><span class="glyphicon glyphicon-list-alt"></span>Order</a></li>
+							<li class="ts" ><a  href="/orders"><span class="glyphicon glyphicon-list-alt"></span>Order</a></li>
+							<li class="ts  ">
+							<%= link_to new_order_path, :method => :get  do %>
+							<span class="glyphicon glyphicon-plus"></span> Add Order
+						<% end %>
+
+							</li>
+
 
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 						
 							<li class="ts" > 
 						<%= image_tag(current_user.picture.url(:thumb)) %>
- </li>
+ 							</li>
 
 							
- 							<li class="ts" > 
- 							<a  href="#">
-						<p  style="color:white;" ><%= current_user.username %></p></a>
- </li>
+ 							<li class="ts" >
+
+ 							<%= link_to edit_user_registration_path, :method => :get  do %>
+						<p  style="color:white;" ><%= current_user.username %></p>
+							<% end %>
+ 								</li>
 
 
 							<li class="ts" > <%= link_to destroy_user_session_path, :method => :delete  do %>
@@ -107,5 +108,6 @@
 
 
 <%= yield %>
-</body>
+<!-- <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+ --></body>
 </html>

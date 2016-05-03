@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
   resources :friendships
   get 'welcome/index'
+  resources :order_details
 
+<<<<<<< HEAD
   devise_for :users
 
 
+=======
+  #devise_for :users
+   devise_for :users , :controllers => { :omniauth_callbacks => "callbacks" }
+>>>>>>> fbadc4beb0077c84122cdccb078fd3e6d01ee659
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -18,7 +24,17 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    post '/orders/batota/' => 'orders#batota'
+    get '/orders/details/:id' => 'orders#details'
+    get '/orders/join_details/:id' => 'orders#join_details'
+    delete '/orders/delete_invitation/:id' => 'orders#delete_invitation'
+    get '/orders/updateStatus/' => 'orders#updateStatus'
+    # get '/orders/batota/' => 'orders#batota'
+    resources :orders do
+    resources :order_details
+    end  
+
+
 
   # Example resource route with options:
   #   resources :products do
