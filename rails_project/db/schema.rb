@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160502213926) do
-=======
-ActiveRecord::Schema.define(version: 20160501124305) do
->>>>>>> fbadc4beb0077c84122cdccb078fd3e6d01ee659
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id",    limit: 4

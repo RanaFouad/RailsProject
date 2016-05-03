@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   resources :friendships
   get 'welcome/index'
-  resources :order_details
+  #resources :order_details
 
-<<<<<<< HEAD
-  devise_for :users
+#<<<<<<< HEAD
+ # devise_for :users
 
 
-=======
+#=======
   #devise_for :users
    devise_for :users , :controllers => { :omniauth_callbacks => "callbacks" }
->>>>>>> fbadc4beb0077c84122cdccb078fd3e6d01ee659
+#>>>>>>> fbadc4beb0077c84122cdccb078fd3e6d01ee659
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
