@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  before_action :authenticate_user!
   def index
   	orders = current_user.orders.last(3)
   	@myorders=[]
