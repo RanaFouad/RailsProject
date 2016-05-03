@@ -24,7 +24,8 @@
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %>
+    <br />
     <%= f.password_field :password, autocomplete: "off"  , class: "form-control"%>
   </div>
 
@@ -50,9 +51,6 @@
     <%= f.submit "Sign up"  , class: "form-control btn btn-primary"%>
   </div>
 <% end %>
-
-
-
 
 <%= render "users/shared/links" %>
 <br>
