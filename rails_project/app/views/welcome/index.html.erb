@@ -1,3 +1,4 @@
+<h3 class="text-center">Home </h3>
 <div class="row">
 	<div class="col-sm-6">
 			<div class="panel panel-info">
@@ -16,12 +17,14 @@
 			  	<div class="panel-body">
 			  		
 			  		<%  @myfriendsActivity.each do |friend| %>
+			  			<% if (friend.orders.last !=nil)%>
 			  			<a href='#'><%= friend.username %></a> has created 
 			  			<%= link_to ' an order' , friend.orders.last %> for <%= friend.orders.last.order_title %> from <%= link_to friend.orders.last.from , friend.orders.last %>
+			  			<% end %>
 			  			<br>
 			  		<%end %>
 			  		
-			  	</div>
+			  	</div> 
 			</div>
 	</div>
 </div>
