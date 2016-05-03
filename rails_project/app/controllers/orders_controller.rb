@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
 before_action :authenticate_user!
 def index
-
 	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 1)
  
 	@page=params[:page].to_i
@@ -33,7 +32,7 @@ def updateStatus
 	Order.find(params[:id]).update(status: params[:status])
 	@x=params[:status]
 
-	#redirect index
+	redirect_to orders_path
 end
 
 def batota
