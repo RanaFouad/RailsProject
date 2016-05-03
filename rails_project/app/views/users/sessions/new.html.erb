@@ -1,22 +1,14 @@
-
-<div class"row">
-  <br>
-  <br>
-  <div class="col-sm-7">
-  <%= image_tag("pasta1.jpeg", :alt => "BackGround" ,  width: "490px" , height: "350px") %>
-  </div>
-
-  <div class="col-sm-4">
+<h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field ">
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true  , class: "form-control"%>
+    <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" , class: "form-control" %>
+    <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -27,14 +19,8 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in"  , class: "form-control btn btn-primary" %>
+    <%= f.submit "Log in" %>
   </div>
 <% end %>
 
-<br>
-
 <%= render "users/shared/links" %>
-
-
-  </div>
-</div>

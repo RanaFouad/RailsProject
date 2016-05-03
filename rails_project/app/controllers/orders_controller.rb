@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-before_action :authenticate_user!
+skip_before_action :verify_authenticity_token
 def index
 	# @x=params[:value]
 end
@@ -51,12 +51,15 @@ def create
 	  	if @order.save
          	params[:friends].each  do |friend|
           		@order.invitations.create(order_id: @order.id,user_id: friend, join: 0) 
-          	end	
-	        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          	end
+        # @invitedfriends = @order.invitations
+			format.html { redirect_to @order, notice: 'Order was successfully created.' }
 	        format.json { render :show, status: :created, location: @order }
+	        format.js
 		else
-	        format.html { render :new }
+			format.html { render :new }
 	        format.json { render json: @order.errors, status: :unprocessable_entity }
+	        format.js
 	    end
 	end
 end
@@ -75,6 +78,7 @@ end
 
 def show
 	# @order_id=params[:id]
+	puts params.inspect
 	@order = Order.find(params[:id])
 	@curentuser_invites=current_user.invitations.find_by(order_id: params[:id])
 	if (@curentuser_invites != nil)
