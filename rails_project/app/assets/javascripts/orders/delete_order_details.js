@@ -38,6 +38,7 @@ $(".invited_friends").click(function(e){
             	$("#modal_header").text("");
             	$("#modal_header").append("Number of invited friends is : "+response.invites.length);
             	$("#invitation_table").html("");
+                console.log($("#modal_header").text());
             	for(var i = 0 ; i<response.invites.length ; i++)
             	{	
             		$("#invitation_table").append("<tr id='row_"+response.invitations_id[i]+"'><td>"+response.invites[i].username+"</td><td id='td_"+response.invitations_id[i]+"'></td></tr>");
@@ -135,7 +136,28 @@ $(".joined_friends").click(function(e){
 
 
 
+$(".joinn").click(function(e){
 
+
+//alert("jjjjjjjjjjjjjj");
+
+///invitations/join/
+
+//alert($(this).parent());
+
+$(this).parent().removeChild();
+
+
+
+
+
+
+
+
+
+
+
+});
 
 
 
