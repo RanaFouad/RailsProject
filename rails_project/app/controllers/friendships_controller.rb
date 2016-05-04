@@ -7,8 +7,6 @@ class FriendshipsController < ApplicationController
   def index
     @friendships = Friendship.all
     ary = Array.new
-
-   
    # @friends_data=User.joins(:friends)
     ##############get Data From user###########
     @Data=Friendship.where('user_id=?',current_user.id)

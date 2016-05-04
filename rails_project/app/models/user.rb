@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable 
+         validates_confirmation_of :password
 
   has_attached_file :picture, :styles => { :medium => "300x300>", :thumb => "50x50#" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/ 
@@ -24,4 +25,5 @@ class User < ActiveRecord::Base
         user.password = Devise.friendly_token[0,20]
       end
   end      
+
 end

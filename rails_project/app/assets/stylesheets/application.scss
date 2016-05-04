@@ -36,12 +36,11 @@ body{
 nav li a:hover,nav li.active a{
 	color:#FFF;
 	text-shadow:4 1px 0 #222;
-	 background:url(../images/menu-hover.png) center ;
 }
 
 nav a {
 	 font-family: 'caviar_dreamsregular',bold;
-	 font-size:1.3em;
+	 font-size:1.1em;
 	color:#A3793D;
 	 display: block;
 }
@@ -65,3 +64,8 @@ a:hover {
 	
 }
 
+
+h1 {
+ 	font-family: 'caviar_dreamsregular',bold;
+	font-size:3em;
+}
