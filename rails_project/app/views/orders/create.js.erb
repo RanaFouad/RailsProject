@@ -1,0 +1,32 @@
+//alert("Hello");
+<% @order.invitations.each do |invite_friend| %>
+<% puts "invite_friend.user_id" %>
+<% puts invite_friend.user_id %>
+	<% publish_to "/notifications/#{invite_friend.user_id}" do %>
+		
+		var gender;
+		<% if(invite_friend.order.user.gender == "female") %>
+			gender = "her";
+		else
+			gender = "his";
+		<% end %>
+
+
+		$("#table_notification").prepend("<tr><td><%= invite_friend.order.user.username + 'invited you to' %>" 
+			+gender+ "order</td><td><button>Join</button></td></tr>");
+
+		var number_of_notification = $('#note_no').text();
+		console .log (number_of_notification);
+		// number_of_notification = number_of_notification++
+		$('#note_no').text("");
+		$('#note_no').text(++number_of_notification);
+
+
+
+	<% end %>
+window.location.href = "<%= order_path(@order) %>";
+
+<% end %>
+
+
+//rackup private_pub.ru -s thin -E produ

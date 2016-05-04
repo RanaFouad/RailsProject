@@ -1,7 +1,55 @@
 <h1>Add Order</h1>
 <div class="row" style="padding:5;margin:5;">
 	<div class="col-md-5" style="  padding:5;margin:5;">
-		<%= render 'form' %>
+		<%= form_for @order,html: { multipart: true  }, remote: true do |f| %>
+<% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@order.errors.count, "error") %> prohibited
+        this order from being saved:
+      </h2>
+      <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="form-group">
+        <%= f.label :order_title %><br>
+        <%= f.select :order_title, [["Breakfast"], ["lunch"],["Dinner"]], { label: "order_title:" }, { class: "form-control" } %>
+    </div>
+  <p>Write the Resturant name</p>
+
+    <div class="form-group">
+        <%= f.label :from %><br>
+        <%= f.text_field :from, class: 'form-control' %>
+    </div>
+
+  <p>You can write a friend name or group</p>
+    <div class="form-group">
+        <%= f.label :friends %><br>
+        <%= f.text_field :friends, class: 'form-control', id: "friends"%>
+    </div>
+
+     <div id="invited_friends_hidden" ></div>
+     <div id="invited_groups_hidden" ></div>
+      <br/>
+      <br/>
+      <br/>
+
+
+    <div class="form-group">
+        <%= f.label :menuimage%>
+            <%= f.file_field :menuimage, class: "btn btn-info" %>   
+    </div>
+   
+    
+  <div class="form-group">
+    <%= f.submit "Publish", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
 	</div>
 	<div class="col-md-7" style="border: 2px solid; padding:5;margin:5;">
 		<h3>Friend invited</h3>

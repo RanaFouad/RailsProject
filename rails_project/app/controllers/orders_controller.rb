@@ -1,22 +1,22 @@
 class OrdersController < ApplicationController
-before_action :authenticate_user!
+	 before_action :authenticate_user!
+skip_before_action :verify_authenticity_token
 def index
-
-	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 1)
+	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 5)
  
 	@page=params[:page].to_i
-	if current_user.orders.size%1 ==0
-		@count=(current_user.orders.size/1).to_i
+	if current_user.orders.size%5 ==0
+		@count=(current_user.orders.size/5).to_i
 	else
-		@count=(current_user.orders.size/1).to_i+1
+		@count=(current_user.orders.size/5).to_i+1
 	end
 	@inv=[]
     @jo=[]
     #@i=Invitation.where(:order_id => 1,:user_id => current_user.id)
 	@all_orders.each do |order| 
-		curentuser_invites=current_user.invitations.where(order_id: order.id)
+		curentuser_invites=Invitation.where(order_id: order.id)
 		if (curentuser_invites != nil)
-			curentuser_joins=current_user.invitations.where(order_id: order.id,join: 1)
+			curentuser_joins=Invitation.where(order_id: order.id,join: 1)
 			if (curentuser_joins != nil)
 				@jo[order.id]=curentuser_joins		
 			else 
@@ -33,7 +33,7 @@ def updateStatus
 	Order.find(params[:id]).update(status: params[:status])
 	@x=params[:status]
 
-	#redirect index
+	redirect_to orders_path
 end
 
 def batota
@@ -83,12 +83,15 @@ def create
 	  	if @order.save
          	params[:friends].each  do |friend|
           		@order.invitations.create(order_id: @order.id,user_id: friend, join: 0) 
-          	end	
-	        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          	end
+        # @invitedfriends = @order.invitations
+			format.html { redirect_to @order, notice: 'Order was successfully created.' }
 	        format.json { render :show, status: :created, location: @order }
+	        format.js
 		else
-	        format.html { render :new }
+			format.html { render :new }
 	        format.json { render json: @order.errors, status: :unprocessable_entity }
+	        format.js
 	    end
 	end
 end
@@ -107,6 +110,7 @@ end
 
 def show
 	# @order_id=params[:id]
+	puts params.inspect
 	@order = Order.find(params[:id])
 	@curentuser_invites=current_user.invitations.find_by(order_id: params[:id])
 	if (@curentuser_invites != nil)

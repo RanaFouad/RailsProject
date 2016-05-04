@@ -29,6 +29,8 @@ gem 'devise'
 gem "paperclip"
 gem 'bootstrap-sass'
 gem 'rails3-jquery-autocomplete'
+gem 'private_pub'
+gem "thin"
 
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -48,7 +50,7 @@ gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'remotipart', '~> 1.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

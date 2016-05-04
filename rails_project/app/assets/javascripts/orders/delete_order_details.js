@@ -95,6 +95,7 @@ $(".joined_friends").click(function(e){
 	//alert("ddddddddddd");
 	//alert(e.target.id);
 	var order_id = e.target.id;
+    console.log("order_id",e.target.id);
 	$.ajax({
             url: "/orders/join_details/"+order_id,
             method: 'GET',

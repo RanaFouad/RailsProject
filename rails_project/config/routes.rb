@@ -5,16 +5,9 @@ Rails.application.routes.draw do
     resources :groups
      resources :groups_member
   get 'welcome/index'
-  #resources :order_details
+  resources :order_details
 
-#<<<<<<< HEAD
- # devise_for :users
-
-
-#=======
-  #devise_for :users
-   devise_for :users , :controllers => { :omniauth_callbacks => "callbacks" }
-#>>>>>>> fbadc4beb0077c84122cdccb078fd3e6d01ee659
+  devise_for :users , :controllers => {registrations: 'users', :omniauth_callbacks => "callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
