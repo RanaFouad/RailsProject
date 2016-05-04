@@ -211,6 +211,9 @@ def delete_invitation
 
 end
 
+
+
+
 private
 def order_params
 params.require(:order).permit(:order_title, :from, :status, :menuimage, :friends)

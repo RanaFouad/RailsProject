@@ -100,7 +100,7 @@
         		<% puts  %>
         			<% if invitation.order.status == "waiting" && invitation.join == 0 %>
         		<% puts "invite" %>
-        				<tr>
+        				<tr id="rows_<%= invitation.id %>">
         					<td>
         						<%= invitation.order.user.username %> invited you to
                                 <% if invitation.order.user.gender == "male" %>
@@ -111,8 +111,8 @@
                                	order
 
         					</td>
-        					<td>
-        						<button>Join</button>
+        					<td id="col_<%= invitation.id %>">
+        						<%= link_to 'Join', join_path(invitation), method: :put, class: "joinn" %>
         					</td>
 
 
