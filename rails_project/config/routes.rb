@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     delete '/orders/delete_invitation/:id' => 'orders#delete_invitation'
     get '/orders/updateStatus/' => 'orders#updateStatus'
     # get '/orders/batota/' => 'orders#batota'
+    put '/invitations/join/:id' => 'invitations#join', as: 'join'
+ 
     resources :orders do
     resources :order_details
     end  

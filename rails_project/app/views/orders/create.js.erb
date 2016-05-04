@@ -7,26 +7,34 @@
 		var gender;
 		<% if(invite_friend.order.user.gender == "female") %>
 			gender = "her";
-		else
-			gender = "his";
+		<% else %>
+		 	gender = "his";
 		<% end %>
 
 
-		$("#table_notification").prepend("<tr><td><%= invite_friend.order.user.username + 'invited you to' %>" 
-			+gender+ "order</td><td><button>Join</button></td></tr>");
-
+		 //$("#table_notification").prepend("<tr><td> <%= invite_friend.order.user.username %> invited you to"+ gender +' order</td><td> <%= link_to "Join", join_path(invite_friend.id), method: :get %> </td></tr>');
+		$('#table_notification').prepend(
+			$('<tr/>')
+				.append('<td/>')
+				.text("<%= invite_friend.order.user.username %> invited you to "+ gender + " order")
+				.append(
+					$('<td/>')
+					.html('<%= link_to "Join", join_path(invite_friend.id), method: :put %>')
+			)
+				)
 		var number_of_notification = $('#note_no').text();
 		console .log (number_of_notification);
-		// number_of_notification = number_of_notification++
+		number_of_notification = number_of_notification++
 		$('#note_no').text("");
 		$('#note_no').text(++number_of_notification);
 
 
-
 	<% end %>
-window.location.href = "<%= order_path(@order) %>";
+
 
 <% end %>
+window.location.href = "<%= order_url(@order) %>";
+
 
 
 //rackup private_pub.ru -s thin -E produ

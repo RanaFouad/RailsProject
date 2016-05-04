@@ -1,0 +1,35 @@
+<!-- <h1>Welcome#index</h1> -->
+<!-- <p>Find me in app/views/welcome/index.html.erb</p> -->
+<%# link_to('Logout', destroy_user_session_path, :method => :delete) %>
+<%# image_tag(current_user.picture.url(:thumb)) %>
+<h3 class="text-center">Home </h3><br/><br/><br/>
+<div class="row">
+	<div class="col-sm-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">Latest Orders</div>
+			  	<div class="panel-body">
+			  		<%  @myorders.each do |order| %>
+			  			<%= link_to order[0] , order[1] %><br>
+			  		<%end %>
+			  		
+			  	</div>
+			</div>
+	</div>
+	<div class="col-sm-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">Friends Activity</div>
+			  	<div class="panel-body">
+			  		
+			  		<%  @myfriendsActivity.each do |friend| %>
+			  			<% if (friend.orders.last !=nil)%>
+			  			<a href='#'><%= friend.username %></a> has created 
+			  			<%= link_to ' an order' , friend.orders.last %> for <%= friend.orders.last.order_title %> from <%= link_to friend.orders.last.from , friend.orders.last %>
+			  			<% end %>
+			  			<br>
+			  		<%end %>
+			  		
+			  	</div> 
+			</div>
+	</div>
+</div>
+

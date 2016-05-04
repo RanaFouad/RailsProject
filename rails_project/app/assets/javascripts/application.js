@@ -15,4 +15,4 @@
 //= require_tree .
 //= require private_pub
 //= require jquery.remotipart
-//= require turbolinks
+// require turbolinks

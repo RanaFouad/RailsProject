@@ -1,13 +1,13 @@
 class OrdersController < ApplicationController
 skip_before_action :verify_authenticity_token
 def index
-	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 1)
+	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 5)
  
 	@page=params[:page].to_i
-	if current_user.orders.size%1 ==0
-		@count=(current_user.orders.size/1).to_i
+	if current_user.orders.size%5 ==0
+		@count=(current_user.orders.size/5).to_i
 	else
-		@count=(current_user.orders.size/1).to_i+1
+		@count=(current_user.orders.size/5).to_i+1
 	end
 	@inv=[]
     @jo=[]
@@ -169,6 +169,9 @@ def delete_invitation
 
 
 end
+
+
+
 
 private
 def order_params
