@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  get 'groups_member/index'
+
   resources :friendships
+    resources :groups
+     resources :groups_member
   get 'welcome/index'
   #resources :order_details
 
