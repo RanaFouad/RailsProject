@@ -4,7 +4,11 @@ skip_before_action :verify_authenticity_token
 def index
 	@all_orders = current_user.orders.paginate(:page => params[:page], :per_page => 5)
  
-	@page=params[:page].to_i
+	if params[:page]
+		@page=params[:page].to_i
+	else
+		@page=1
+	end
 	if current_user.orders.size%5 ==0
 		@count=(current_user.orders.size/5).to_i
 	else
@@ -12,7 +16,6 @@ def index
 	end
 	@inv=[]
     @jo=[]
-    #@i=Invitation.where(:order_id => 1,:user_id => current_user.id)
 	@all_orders.each do |order| 
 		curentuser_invites=Invitation.where(order_id: order.id)
 		if (curentuser_invites != nil)
@@ -26,6 +29,43 @@ def index
 		else 
 			@inv[order.id]=0
 			@jo[order.id]=0
+		end
+	end
+	@z=Invitation.where(user_id: current_user.id,join:1)
+	@joinedOrders=[]
+	@z.each do |o|
+		@joinedOrders.push(Order.find(o.order_id))
+	end 
+	if @joinedOrders.size%5 ==0
+		@count2=(@joinedOrders.size/5).to_i
+	else
+		@count2=(@joinedOrders.size/5).to_i+1
+	end
+	if(@joinedOrders.size!=0)
+		if params[:page2]
+			@page2=params[:page2].to_i
+		else
+			@page2=1
+		end
+		@joinedOrdersp=@joinedOrders[(@page2-1)*5,@page2];
+	 	
+		
+		@inv2=[]
+	    @jo2=[]
+		@joinedOrders.each do |order| 
+			curentuser_invites=Invitation.where(order_id: order.id)
+			if (curentuser_invites != nil)
+				curentuser_joins=Invitation.where(order_id: order.id,join: 1)
+				if (curentuser_joins != nil)
+					@jo2[order.id]=curentuser_joins		
+				else 
+					@jo2[order.id]=0
+				end
+				@inv2[order.id]=curentuser_invites
+			else 
+				@inv2[order.id]=0
+				@jo2[order.id]=0
+			end
 		end
 	end
 end
