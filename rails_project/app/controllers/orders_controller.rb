@@ -41,6 +41,7 @@ def index
 	else
 		@count2=(@joinedOrders.size/5).to_i+1
 	end
+	@joinedOrdersp=[]
 	if(@joinedOrders.size!=0)
 		if params[:page2]
 			@page2=params[:page2].to_i
