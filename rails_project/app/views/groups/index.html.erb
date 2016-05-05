@@ -41,27 +41,37 @@
      <h2><%= @group_data.group_name %>Members</h2>
    
 <div class="col-lg-6" style="border: 1px solid gray;"> 
-   <%= render partial: 'groups_member/form' %>
+  <div class="row">
+   <%= form_for GroupMember.new do |f| %>
+ 
+
+  <div class="actions">
+      <%= f.text_field :user_id , required: true %>
+      <%= f.hidden_field :group_id,:value => @group_data.id %>
+      <%= f.submit %>
+  </div>
+<% end %>
 
     <%else%>
      <h2>Data</h2>
   <% end %>
-
-    
+</div>
+<div class="row">    
     <% @groups_member.each do |group_data| %>
-    <div class="col-lg-3"> 
+    <div class="col-lg-2"> 
       
        <%= image_tag(group_data.user.picture.url(:thumb)) %>
-        <%=  group_data.user.username %>
-     <%= link_to 'Remove' ,groups_member_path(group_data), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%=  group_data.user.username %>
+     <%= link_to 'Remove' ,group_member_path(group_data), method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
+
     
     <% end %>
    
  
      <% end %>
 
-
+</div>
 
 </div>
 

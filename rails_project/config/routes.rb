@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :group_members
   get 'groups_member/index'
 
   resources :friendships

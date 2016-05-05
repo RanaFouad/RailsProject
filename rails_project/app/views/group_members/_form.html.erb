@@ -1,0 +1,8 @@
+<%= form_for GroupMember.new do |f| %>
+ 
+
+  <div class="actions">
+      <%= f.text_field :user_id , required: true %>
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -3,9 +3,10 @@ class GroupsController < ApplicationController
 	  before_action :set_group, only: [:show, :edit, :update, :destroy]
 
  def index
-	 @groups = Group.all
-     @group = Group.new
-         @group_member = GroupMember.new
+	 @groups = current_user.groups
+
+    @group = Group.new
+    @group_member = GroupMember.new
 		  
 
  end 
@@ -15,20 +16,22 @@ class GroupsController < ApplicationController
     @group = Group.create(params.require(:group).permit(:group_name))
     @group_name = params[:group][:group_name]
 
+
    
     if user_signed_in?  
     @group.user_id=current_user.id
     @group.group_name= @group_name
     @group.save()
-    redirect_to @group
+     redirect_to @group
+  
+
 end
 end
 
 
 ##########################Show
 def show
-   @groups = Group.all
-   @group = Group.new
+   @groups = current_user.groups @group = Group.new
   
    @groups_member=Group.find(params[:id]).group_members
    @group_data=Group.find(params[:id])

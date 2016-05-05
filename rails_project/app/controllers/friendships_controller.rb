@@ -48,18 +48,25 @@ class FriendshipsController < ApplicationController
   
     @friendship = Friendship.create(params.require(:friendship).permit(:friend_id))
     @friend_id = params[:friendship][:friend_id]
+    if User.find_by(email: @friend_id)
 
-    user = User.find_by(email: @friend_id).id
-    if user_signed_in?  
-    @friendship.user_id=current_user.id
-    @friendship.friend_id= user
-    @friendship.save()
-    redirect_to @friendship
-
+       user = User.find_by(email: @friend_id).id
+        if user_signed_in?  
+        @friendship.user_id=current_user.id
+        @friendship.friend_id= user
+        @friendship.save()
+        redirect_to @friendship
+      end
+      ##############End of else###########
+    else
+        redirect_to @friendship ,notice: "Wrong Mail or user Not found"
+    end
+   
   
    
 
-    end
+  
+  ##################33New Function 
     def new
   @friendship = Friendship.new
 end
