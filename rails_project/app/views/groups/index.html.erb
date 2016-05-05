@@ -17,9 +17,9 @@
   <tbody>
     <% @groups.each do |group_data| %>
       <tr>
-        <td><%= link_to group_data.group_name %></td>
-        <td><%= link_to 'Delete',group_path(group_data.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add',group_path(group_data.id) %></td>
+        <td><h4><%= link_to group_data.group_name ,group_path(group_data.id) %></h4></td>
+        <td><h4><%= link_to 'Delete',group_path(group_data.id), method: :delete, data: { confirm: 'Are you sure?' } %></h4></td>
+        <td><h4><%= link_to 'Add',group_path(group_data.id) %></h4></td>
 
 
         
@@ -60,9 +60,9 @@
     <% @groups_member.each do |group_data| %>
     <div class="col-lg-2"> 
       
-       <%= image_tag(group_data.user.picture.url(:thumb)) %>
-      <%=  group_data.user.username %>
-     <%= link_to 'Remove' ,group_member_path(group_data), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= image_tag(group_data.user.picture.url(:thumb)) %>
+    <h4><%=  group_data.user.username %></h4>
+   <h4>  <%= link_to 'Remove' ,group_member_path(group_data), method: :delete, data: { confirm: 'Are you sure?' } %></h4>
 </div>
 
     

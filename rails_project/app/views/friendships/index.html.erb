@@ -16,7 +16,7 @@
     <% @friends_data.each do |friend| %>
       <tr>
         <td><%= image_tag(friend.picture.url(:thumb)) %></td>
-        <td><%= friend.email%></td>
+        <td><h4><%= friend.email%></h4></td>
        
          </tr>
     <% end %>
@@ -38,7 +38,7 @@
     <% @Data.each do |friend| %>
       <tr>
         
-         <td> <%= link_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <td align="center"><h4> <%= link_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?', class: "btn btn-danger" } %></h4></td>
      </tr>
     <% end %>
   </tbody>
